@@ -1,9 +1,19 @@
-FROM python:3.10
+FROM python:3.12-slim
 
-ENV DASH_DEBUG_MODE False
-COPY ./app /app
-WORKDIR /app
-RUN set -ex && \
-    pip install -r requirements.txt
-EXPOSE 8050
-CMD ["gunicorn", "-b", "0.0.0.0:8050", "--reload", "app:server"]
+# Copiando todo o projeto para a imagem
+COPY . /docker_dash
+
+# Instalar dependências necessárias
+RUN apt-get update
+
+# Instalar o Poetry
+RUN pip3 install poetry
+
+WORKDIR /docker_dash
+
+RUN poetry config virtualenvs.create false
+
+# Instale as dependências do projeto usando o Poetry
+RUN poetry install --no-dev
+
+CMD ["gunicorn", "-b", "0.0.0.0:8050", "docker_dash.app:server", "--timeout", "1200"]

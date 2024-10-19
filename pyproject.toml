@@ -1,21 +1,18 @@
 [tool.poetry]
 name = "docker-dash"
-version = "1.0.0"
+version = "0.0.1"
 description = "Dockerize a plotly/dash app."
-authors = ["JC <jc@jucyai.com>"]
+authors = ["Diogo Caribé <dogosousa@gmail.com.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-dash = "^2.6.0"
-dash-daq = "^0.5.0"
-dash-bootstrap-components = "^1.2.0"
-plotly = "^5.9.0"
-pandas = "^1.4.3"
-
-[tool.poetry.dev-dependencies]
-black = {version = "^22.6.0", allow-prereleases = true}
+python = "^3.12"
+dash = "^2.17.1"
+dash-leaflet = "^1.0.15"
+dash-bootstrap-components = "^1.6.0"
+pandas = "^2.2.2"
+gunicorn = "^23.0.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
