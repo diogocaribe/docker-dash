@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME}
+    restart: always
+    environment:
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      VIRTUAL_PORT: ${VIRTUAL_PORT}
+    expose:
+      - ${VIRTUAL_PORT}
+    volumes:
+      - .:/docker_dash
+    networks:
+      - network 
+    deploy:
+      resources:
+        limits:
+          cpus: "${LIMIT_CPU}"
+          memory: "${LIMIT_MEM}"
+
+networks:
+  network:
+    driver: bridge

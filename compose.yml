@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .  # Diretório onde o Dockerfile está localizado
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME}
+    restart: always
+    ports:
+      - "8050:8050"  # Mapeia a porta 8050 do contêiner para a porta 8050 do host
+    environment:
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      VIRTUAL_PORT: ${VIRTUAL_PORT}
+    expose:
+      - ${VIRTUAL_PORT}
+    volumes:
+      - .:/docker_dash
+    networks:
+      - network 
+    deploy:
+      resources:
+        limits:
+          cpus: "${LIMIT_CPU}"
+          memory: "${LIMIT_MEM}"
+
+networks:
+  network:
+    driver: bridge
