@@ -10,8 +10,6 @@ services:
       VIRTUAL_PORT: ${VIRTUAL_PORT}
     expose:
       - ${VIRTUAL_PORT}
-    volumes:
-      - .:/docker_dash
     networks:
       - network 
     deploy:

@@ -13,6 +13,7 @@ dash-bootstrap-components = "^1.6.0"
 pandas = "^2.2.2"
 gunicorn = "^23.0.0"
 pydantic-settings = "^2.6.0"
+pydantic = {extras = ["dotenv"], version = "^2.9.2"}
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.7.0"
@@ -40,3 +41,7 @@ select = [
     # isort
     "I",
 ]
+
+[tool.ruff.format]
+# Prefer single quotes over double quotes.
+quote-style = "single"
