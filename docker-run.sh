@@ -29,7 +29,7 @@ else
         export $(grep --regexp ^[A-Z] .env | cut -d= -f1)
         docker rm -f ${PROJECT_NAME}
         docker network ls | grep ${NETWORK} || docker network create ${NETWORK}
-        docker-compose --env-file .env --file ${compose_file} --compatibility up --detach --force-recreate --build --remove-orphans
+        docker compose --env-file .env --file ${compose_file} --compatibility up --detach --force-recreate --build --remove-orphans
     fi
 fi
 

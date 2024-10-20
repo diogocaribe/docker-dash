@@ -32,4 +32,4 @@ def update_graph(value):
 
 
 if __name__ == '__main__':
-    app.run(port=8050, debug=settings.DASH_DEBUG_MODE)
+    app.run(port=8050, host="0.0.0.0", debug=settings.DASH_DEBUG_MODE)
