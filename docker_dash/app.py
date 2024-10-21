@@ -17,7 +17,9 @@ app = Dash(__name__)
 
 server = app.server
 server.secret_key = secrets.token_urlsafe(16)
-server.wsgi_app = ProxyFix(server.wsgi_app, x_for=1, x_host=1)
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
 
 app.layout = html.Div(
     [
