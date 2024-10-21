@@ -1,6 +1,9 @@
+import secrets
+
 import pandas as pd
 import plotly.express as px
 from dash import Dash, Input, Output, callback, dcc, html
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from docker_dash.settings import Settings
 
@@ -13,6 +16,8 @@ settings = Settings()
 app = Dash(__name__)
 
 server = app.server
+server.secret_key = secrets.token_urlsafe(16)
+server.wsgi_app = ProxyFix(server.wsgi_app, x_for=1, x_host=1)
 
 app.layout = html.Div(
     [
