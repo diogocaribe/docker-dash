@@ -4,20 +4,24 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: ${PROJECT_NAME}
-    restart: always
+    restart: unless-stopped
+    volumes:
+      - .:/docker_dash
     environment:
-      VIRTUAL_HOST: ${VIRTUAL_HOST}
-      VIRTUAL_PORT: ${VIRTUAL_PORT}
+      - DEBUG_MODE=False
+      - "VIRTUAL_HOST=${VIRTUAL_HOST}"
+      - "VIRTUAL_PORT=${VIRTUAL_PORT}"
     expose:
-      - ${VIRTUAL_PORT}
-    networks:
-      - network 
+      - "${VIRTUAL_PORT}"
     deploy:
       resources:
         limits:
           cpus: "${LIMIT_CPU}"
           memory: "${LIMIT_MEM}"
+    networks:
+      - default
 
 networks:
-  network:
-    driver: bridge
+  default:
+    name: "${NETWORK}"
+    external: true

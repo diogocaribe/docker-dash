@@ -9,4 +9,4 @@ class Settings(BaseSettings):
 
     pg_dsn: PostgresDsn = 'postgres://user:pass@localhost:5432/foobar'
 
-    DASH_DEBUG_MODE: bool
+    DEBUG_MODE: bool

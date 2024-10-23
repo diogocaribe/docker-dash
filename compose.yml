@@ -8,8 +8,8 @@ services:
     ports:
       - "8050:8050"  # Mapeia a porta 8050 do contêiner para a porta 8050 do host
     environment:
-      VIRTUAL_HOST: ${VIRTUAL_HOST}
-      VIRTUAL_PORT: ${VIRTUAL_PORT}
+      - VIRTUAL_HOST: ${VIRTUAL_HOST}
+      - VIRTUAL_PORT: ${VIRTUAL_PORT}
     expose:
       - ${VIRTUAL_PORT}
     volumes:
